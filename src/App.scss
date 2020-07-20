@@ -1,0 +1,16 @@
+$theme-colors: (
+  "fmv": #00acc1,
+  "bgicon": #4c4f57,
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.button-fmv {
+  color: #fff;
+  background-color: #00acc1;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
