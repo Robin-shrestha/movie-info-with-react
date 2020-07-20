@@ -3,20 +3,15 @@ import "./static/SearchPage.scss";
 import { Link } from "react-router-dom";
 import Home from "./Home";
 
-const SearchPage = () => {
+const SearchPage = ({ setSearchQuery }) => {
   const [searchContent, setSearchContent] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const clickHandler = () => {
-    setSearchQuery(searchContent);
-  };
 
   return (
     <div className="container-searchpage">
       <div className="logo ">
-        <h1 className="bg-fmv rounded p-1 text-white">GETMOVIES</h1>
+        <h1 className="bg-fmv rounded p-1 mt-4 mb-3 text-white">GETMOVIES</h1>
       </div>
-      <div className="input-group mb-3 container-searchbox">
+      <div className="input-group mt-3 mb-3 container-searchbox">
         <input
           type="text"
           className="form-control p-2"
@@ -30,7 +25,9 @@ const SearchPage = () => {
           <button
             className="btn btn-outline-fmv bg-fmv"
             type="button"
-            onClick={clickHandler}
+            onClick={() => {
+              setSearchQuery(searchContent);
+            }}
           >
             <i className="fa fa-search text-white"></i>.
           </button>

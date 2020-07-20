@@ -8,29 +8,28 @@ $border-btn-color: #389c56;
 
   .header-left {
     display: flex;
+    h2 {
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
   }
   .header-right {
     align-self: flex-start;
-  }
-  h2 {
-    color: #fff;
-    text-decoration: none;
-
-    .link {
+    a {
+      color: #fff;
+      font-size: 1.2em;
+      border-bottom: solid #00acc1;
+    }
+    a:hover {
+      color: #fff;
       text-decoration: none;
+      border-bottom: solid $border-btn-color;
     }
   }
+
   i {
     font-size: 1.9em;
-  }
-  a {
-    color: #fff;
-    font-size: 1.2em;
-    border-bottom: solid #00acc1;
-  }
-  a:hover {
-    color: #fff;
-    text-decoration: none;
-    border-bottom: solid $border-btn-color;
   }
 }

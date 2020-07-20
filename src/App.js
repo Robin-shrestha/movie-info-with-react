@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Header from "./Components/Header";
 import Home from "./Components/Home";
@@ -13,26 +13,24 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // const clickHandler = (e) => {
+  //   setSearchQuery(e.value.target);
+  // };
+
   return (
     <Router>
       <Header />
-      <switch>
+      <Switch>
         <Route exact path="/">
-          <SearchPage />
+          <SearchPage setSearchQuery={setSearchQuery} />
         </Route>
         <Route exact path="/Home">
           <Home />
         </Route>
-      </switch>
+      </Switch>
     </Router>
-    // <div>
-    //   <div>
-    //     <Header />
-    //   </div>
-    //   <div>
-    //     <SearchPage />
-    //   </div>
-    // </div>
   );
 }
 

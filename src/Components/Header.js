@@ -17,7 +17,7 @@ const Header = () => {
       </div>
       <div className="header-right">
         <span className="p-1">
-          <a href="#">Login</a>
+          <Link to="/">Login</Link>
         </span>
       </div>
     </div>
