@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./static/SearchPage.scss";
 import { Link } from "react-router-dom";
-import Home from "./Home";
 
 const SearchPage = ({ setSearchQuery }) => {
   const [searchContent, setSearchContent] = useState("");
@@ -22,15 +21,15 @@ const SearchPage = ({ setSearchQuery }) => {
           }}
         />
         <div className="input-group-append">
-          <button
+          <Link
+            to="/search_results"
             className="btn btn-outline-fmv bg-fmv"
-            type="button"
             onClick={() => {
               setSearchQuery(searchContent);
             }}
           >
-            <i className="fa fa-search text-white"></i>.
-          </button>
+            <i className="fa fa-search text-white"></i>
+          </Link>
         </div>
       </div>
       <p
