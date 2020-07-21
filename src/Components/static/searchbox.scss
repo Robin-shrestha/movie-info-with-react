@@ -1,0 +1,14 @@
+.container-searchbox {
+  display: flex;
+  justify-content: center;
+
+  input[type="text"] {
+    max-width: 700px;
+    border-radius: 5px 0 0 5px;
+    font-size: 1.5em;
+  }
+  a {
+    border-radius: 0 5px 5px 0;
+    font-size: 1.5em;
+  }
+}

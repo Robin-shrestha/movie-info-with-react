@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import axios from "axios";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import Header from "./Components/Header";
 import Home from "./Components/Home";
 import SearchResults from "./Components/SearchResults";
-
 import SearchPage from "./Components/SearchPage";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-} from "react-router-dom";
+
+export const searchQueryContext = React.createContext();
 
 const apiKey = "b13b73e49a3f6baa037e1e91855f9c63";
 
@@ -31,9 +27,6 @@ function App() {
       .then((res) => {
         console.log(res);
         setMovieData(res.data.results);
-        movieData.map((item) => {
-          console.log(item);
-        });
       })
       .catch((err) => {
         console.log(err);
@@ -42,18 +35,22 @@ function App() {
 
   return (
     <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <SearchPage setSearchQuery={setSearchQuery} />
-        </Route>
-        <Route exact path="/Home">
-          <Home />
-        </Route>
-        <Route exact path="/search_results">
-          <SearchResults movieData={movieData} />
-        </Route>
-      </Switch>
+      <searchQueryContext.Provider
+        value={{ searchQuery: searchQuery, setSearchQuery: setSearchQuery }}
+      >
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <SearchPage />
+          </Route>
+          <Route exact path="/Home">
+            <Home />
+          </Route>
+          <Route exact path="/search_results">
+            <SearchResults movieData={movieData} />
+          </Route>
+        </Switch>
+      </searchQueryContext.Provider>
     </Router>
   );
 }

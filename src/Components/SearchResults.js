@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBox from "./SearchBox";
 
 const SearchResults = ({ movieData }) => {
   const moviePoster = (path) => {
@@ -7,7 +8,7 @@ const SearchResults = ({ movieData }) => {
       <div>
         <img
           src={imgPath}
-          alt="noing"
+          alt="noimg"
           style={{ width: "150px" }}
           // onError={(e) => {
           //   e.target.onerror = null;
@@ -17,12 +18,9 @@ const SearchResults = ({ movieData }) => {
       </div>
     );
   };
-  console.log(movieData);
-  //   movieData.map((item) => {
-  //     console.log(item);
-  //   });
+
   return (
-    <div>
+    <div className="p-2">
       <ul>
         {movieData.map((item) => {
           console.log(item);
