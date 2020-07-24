@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import "./static/searchbox.scss";
 import { searchQueryContext } from "../App";
 
@@ -7,8 +7,22 @@ const SearchBox = ({ setSearchQuery }) => {
   const [searchContent, setSearchContent] = useState("");
   const searchContext = useContext(searchQueryContext);
 
+  useEffect(() => {
+    return searchContext.setSearchQuery("");
+  }, []);
+  let history = useHistory();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    // console.log("asd");
+    searchContext.setSearchQuery(searchContent);
+    // console.log(searchContent.split(" ").join("_"));
+
+    // history.push("/search_results");
+    history.push(`/search_results/${searchContent.split(" ").join("_")}`);
+  };
   return (
-    <form className="container-searchbox m-3">
+    <form className="container-searchbox m-3" onSubmit={submitHandler}>
       <input
         type="text"
         className="form-control p-2"
@@ -18,16 +32,21 @@ const SearchBox = ({ setSearchQuery }) => {
           setSearchContent(e.target.value);
         }}
       />
-      <Link
-        className="btn btn-outline-fmv bg-fmv text-white"
+      {/* <Link
         type="submit"
+        className="btn btn-outline-fmv bg-fmv text-white"
         to="/search_results"
-        onClick={() => {
-          searchContext.setSearchQuery(searchContent);
-        }}
+        onClick={submitHandler}
       >
         <i className="fa fa-search "></i>
-      </Link>
+      </Link> */}
+      <button
+        type="submit"
+        className="btn btn-outline-fmv bg-fmv text-white"
+        onClick={submitHandler}
+      >
+        <i className="fa fa-search "></i>
+      </button>
     </form>
   );
 };

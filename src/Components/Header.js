@@ -1,6 +1,7 @@
 import React from "react";
 import "./static/header.scss";
 import { Link } from "react-router-dom";
+import SearchBox from "./SearchBox";
 
 const Header = () => {
   return (
@@ -19,6 +20,9 @@ const Header = () => {
         <span className="p-1">
           <Link to="/">Login</Link>
         </span>
+        {/* <span className="header-searchbox">
+          <SearchBox />
+        </span> */}
       </div>
     </div>
   );

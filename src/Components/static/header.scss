@@ -5,6 +5,7 @@ $border-btn-color: #389c56;
   background-color: #16181c;
   display: flex;
   justify-content: space-between;
+  width: 1005;
 
   .header-left {
     display: flex;
@@ -16,6 +17,7 @@ $border-btn-color: #389c56;
     }
   }
   .header-right {
+    display: flex;
     align-self: flex-start;
     a {
       color: #fff;

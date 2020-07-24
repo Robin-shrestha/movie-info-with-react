@@ -1,7 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import "./App.scss";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  Redirect,
+} from "react-router-dom";
 
 import Header from "./Components/Header";
 import Home from "./Components/Home";
@@ -9,12 +16,37 @@ import SearchResults from "./Components/SearchResults";
 import SearchPage from "./Components/SearchPage";
 
 export const searchQueryContext = React.createContext();
+export const movieDataContext = React.createContext();
 
 const apiKey = "b13b73e49a3f6baa037e1e91855f9c63";
 
+const initialMovieDatastate = {
+  loading: true,
+  error: "",
+  movieData: [],
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "MOVIE_SEARCH_SUCCESS":
+      return {
+        loading: false,
+        error: "",
+        movieData: action.payload,
+      };
+    case "ON_RETURN":
+      return { ...state, loading: true, movieData: [] };
+    case "ON_ERROR":
+      return { ...state, loading: false, error: "error" };
+    default:
+      return state;
+  }
+};
+
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [movieData, setMovieData] = useState([]);
+
+  const [movieDataState, dispatch] = useReducer(reducer, initialMovieDatastate);
 
   useEffect(() => {
     axios
@@ -26,32 +58,57 @@ function App() {
       })
       .then((res) => {
         console.log(res);
-        setMovieData(res.data.results);
+        dispatch({ type: "MOVIE_SEARCH_SUCCESS", payload: res.data.results });
       })
       .catch((err) => {
         console.log(err);
+        dispatch({ type: "ON_ERROR" });
       });
   }, [searchQuery]);
 
   return (
-    <Router>
+    <div>
       <searchQueryContext.Provider
-        value={{ searchQuery: searchQuery, setSearchQuery: setSearchQuery }}
+        value={{
+          searchQuery: searchQuery,
+          setSearchQuery: setSearchQuery,
+        }}
       >
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <SearchPage />
-          </Route>
-          <Route exact path="/Home">
-            <Home />
-          </Route>
-          <Route exact path="/search_results">
-            <SearchResults movieData={movieData} />
-          </Route>
-        </Switch>
       </searchQueryContext.Provider>
-    </Router>
+
+      {/* route components  */}
+      <searchQueryContext.Provider
+        value={{
+          searchQuery: searchQuery,
+          setSearchQuery: setSearchQuery,
+        }}
+      >
+        <Route exact path="/" component={SearchPage}></Route>
+      </searchQueryContext.Provider>
+
+      <Route exact path="/Home" component={Home}></Route>
+
+      {/* <Route exact path="/search_results">
+        <movieDataContext.Provider
+          value={{ movieDataState: movieDataState, dispatch: dispatch }}
+        >
+          <SearchResults />
+        </movieDataContext.Provider>
+      </Route> */}
+      <Route exact path="/search_results/:searchQuery">
+        {/* <Route exact path="/search_results"> */}
+        {searchQuery ? (
+          <movieDataContext.Provider
+            value={{ movieDataState: movieDataState, dispatch: dispatch }}
+          >
+            <SearchResults />
+          </movieDataContext.Provider>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+    </div>
   );
 }
 
