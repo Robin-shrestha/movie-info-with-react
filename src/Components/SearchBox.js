@@ -15,11 +15,13 @@ const SearchBox = ({ setSearchQuery }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     // console.log("asd");
-    searchContext.setSearchQuery(searchContent);
-    // console.log(searchContent.split(" ").join("_"));
-
-    // history.push("/search_results");
-    history.push(`/search_results/${searchContent.split(" ").join("_")}`);
+    if (searchContent) {
+      searchContext.setSearchQuery(searchContent);
+      // history.push("/search_results");
+      history.push(`/search_results/${searchContent.split(" ").join("_")}`);
+    } else {
+      history.push("/");
+    }
   };
   return (
     <form className="container-searchbox m-3" onSubmit={submitHandler}>
