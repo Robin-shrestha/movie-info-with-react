@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { apiKey, movieDataContext } from "../App";
 import { imgNotFound, onError, onLoading, moviePoster } from "./utils";
 import { useParams } from "react-router-dom";
@@ -7,18 +7,21 @@ import "./static/SearchItem.scss";
 
 const SearchItem = () => {
   const movieId = useParams();
-  const { movieDataState, dispatch } = useContext(movieDataContext);
-  const { loading, error, movieData } = movieDataState;
+  const [movieData, setMovieData] = useState([]);
+  // const { movieDataState, dispatch } = useContext(movieDataContext);
+
+  // const { loading, error, movieData } = movieDataState;
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/${movieId.id}`, {
         params: {
-          api_key: apiKey,
+          api_key: process.env.REACT_APP_API_KEY,
         },
       })
       .then((res) => {
         console.log(res);
-        dispatch({ type: "MOVIE_ITEM", payload: res.data });
+        setMovieData(res.data);
+        // dispatch({ type: "MOVIE_ITEM", payload: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -26,14 +29,14 @@ const SearchItem = () => {
         //   dispatch({ type: "ON_ERROR" });
         // }
       });
-    return () => {
-      dispatch({ type: "ON_RETURN" });
-    };
+    // return () => {
+    //   dispatch({ type: "ON_RETURN" });
+    // };
   }, []);
 
   useEffect(() => {
     console.log(movieData);
-  }, [movieDataState]);
+  }, []);
 
   return (
     <div className="container-fluid p-0 container-item bg-bgc text-white">

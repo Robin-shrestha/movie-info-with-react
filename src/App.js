@@ -19,7 +19,7 @@ import SearchItem from "./Components/SearchItem";
 export const searchQueryContext = React.createContext();
 export const movieDataContext = React.createContext();
 
-export const apiKey = "b13b73e49a3f6baa037e1e91855f9c63";
+// export const apiKey = "b13b73e49a3f6baa037e1e91855f9c63";
 
 const initialMovieDatastate = {
   loading: true,
@@ -51,7 +51,7 @@ function App() {
     axios
       .get("https://api.themoviedb.org/3/search/movie", {
         params: {
-          api_key: apiKey,
+          api_key: process.env.REACT_APP_API_KEY,
           query: searchQuery,
         },
       })

@@ -8,12 +8,12 @@ const SearchResults = () => {
   const movieContext = useContext(movieDataContext);
   const searchTerms = useParams();
   // console.log(searchTerms);
-  useEffect(() => {
-    return () => {
-      console.log("destroy component search results");
-      movieContext.dispatch({ type: "ON_RETURN" });
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("destroy component search results");
+  //     movieContext.dispatch({ type: "ON_RETURN" });
+  //   };
+  // }, []);
 
   return (
     <div className="container-fluid sr-container bg-bgc">
