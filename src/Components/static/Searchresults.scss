@@ -1,40 +1,61 @@
-.container-sr {
-  display: flex;
-  flex-wrap: wrap;
-  li {
-    a {
-      //   width: 100%;
-      //   height: 100%;
-      //   float: left;
-      //   overflow: hidden;
-      //   position: relative;
-      //   text-align: center;
-      cursor: default;
+.sr-container {
+  .sr-row {
+    list-style: none;
+    .sr-col {
       text-decoration: none;
-      color: #fff;
-      position: relative;
       text-align: center;
-      font-weight: 400;
       img {
-        display: block;
-        position: relative;
         max-width: 200px;
-        // width: calc(100% + 60px);
-        -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
-        transition: opacity 0.35s, transform 0.45s;
-        -webkit-transform: translate3d(-30px, 0, 0);
-        transform: translate3d(-30px, 0, 0);
+        -moz-box-shadow: 5px 5px 7px rgba(87, 83, 83, 0.7);
+        -webkit-box-shadow: 5px 5px 7px rgba(87, 83, 83, 0.7);
+        box-shadow: 5px 5px 7px rgba(87, 83, 83, 0.7);
+        transition: all 0.25s linear;
+        margin-bottom: 0.5em;
+      }
+      img:hover {
+        -moz-box-shadow: 10px 10px 7px rgba(87, 83, 83, 0.7);
+        -webkit-box-shadow: 10px 10px 7px rgba(87, 83, 83, 0.7);
+        box-shadow: 10px 10px 7px rgba(87, 83, 83, 0.7);
+        transform: scale(1.05);
+      }
+      p {
+        color: white;
       }
     }
-    a:hover {
-      text-decoration: none;
-    }
-  }
-  li:hover img {
-    opacity: 0.9;
-    filter: alpha(opacity=60);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    z-index: 5555;
   }
 }
+
+// .container-sr {
+//   display: flex;
+//   flex-wrap: wrap;
+//   li {
+//     a {
+
+//       cursor: default;
+//       text-decoration: none;
+//       color: #fff;
+//       position: relative;
+//       text-align: center;
+//       font-weight: 400;
+//       img {
+//         display: block;
+//         position: relative;
+//         max-width: 200px;
+//         -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+//         transition: opacity 0.35s, transform 0.45s;
+//         -webkit-transform: translate3d(-30px, 0, 0);
+//         transform: translate3d(-30px, 0, 0);
+//       }
+//     }
+//     a:hover {
+//       text-decoration: none;
+//     }
+//   }
+//   li:hover img {
+//     opacity: 0.9;
+//     filter: alpha(opacity=60);
+//     -webkit-transform: translate3d(0, 0, 0);
+//     transform: translate3d(0, 0, 0);
+//     z-index: 5555;
+//   }
+// }

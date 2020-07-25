@@ -16,7 +16,7 @@ const SearchResults = () => {
   }, []);
 
   return (
-    <div className=" p-2 bg-bgc">
+    <div className="container-fluid sr-container bg-bgc">
       {movieContext.movieDataState.loading ? onLoading() : null}
       {movieContext.movieDataState.error
         ? onError(movieContext.movieDataState.error)
@@ -25,13 +25,15 @@ const SearchResults = () => {
       <h4 style={{ color: "#FFF" }}>
         search results for "{searchTerms.searchQuery.split("_").join(" ")}"
       </h4>
-      <ul className="container-sr">
+      <ul className="row justify-content-center sr-row pl-3 mt-4">
         {movieContext.movieDataState.movieData.map((item) => {
           return (
-            <li key={item.id} className="col-lg-2 col-md-3 col-sm-4 col-8 m-3 ">
+            <li
+              key={item.id}
+              className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 sr-col pl-1 pr-1 mb-2 "
+            >
               <Link to={`/movie/${item.id}`}>
                 <img
-                  // src={`https://image.tmdb.org/t/p/w200/${item.poster_path}`}
                   src={moviePoster(item.poster_path)}
                   alt={item.title}
                   // style={{ width: "150px" }}

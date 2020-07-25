@@ -4,6 +4,7 @@ import posternotfound from "./static/Images/posterNotFound.jpg";
 export const moviePoster = (path) => {
   return `https://image.tmdb.org/t/p/w200${path}`;
 };
+
 export const imgNotFound = (e) => {
   e.target.onerror = null;
   e.target.src = posternotfound;
