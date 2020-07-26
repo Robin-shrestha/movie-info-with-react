@@ -11,14 +11,14 @@ const Header = () => {
           <i className="fa fa-list bg-bgicon p-1 rounded "></i>
         </div>
         <h2 className="bg-fmv rounded p-1">
-          <Link className="link" to="/">
+          <Link className="link" to="/movie-info-with-react">
             GETMOVIES
           </Link>
         </h2>
       </div>
       <div className="header-right">
         <span className="p-1">
-          <Link to="/">Login</Link>
+          <Link to="/movie-info-with-react">Login</Link>
         </span>
         {/* <span className="header-searchbox">
           <SearchBox />

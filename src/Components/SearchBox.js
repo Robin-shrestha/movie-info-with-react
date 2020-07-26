@@ -20,7 +20,7 @@ const SearchBox = ({ setSearchQuery }) => {
       // history.push("/search_results");
       history.push(`/search_results/${searchContent.split(" ").join("_")}`);
     } else {
-      history.push("/");
+      history.push("/movie-info-with-react");
     }
   };
   return (

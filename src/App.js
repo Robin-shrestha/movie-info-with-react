@@ -1,14 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import "./App.scss";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  Redirect,
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Header from "./Components/Header";
 import Home from "./Components/Home";
@@ -57,11 +50,11 @@ function App() {
       })
       .then((res) => {
         // console.log(res);
-        dispatch({ type: "MOVIE_SEARCH_SUCCESS", payload: res.data.results });
+        dispatch({ type: "MOVIE_SEARCH_SUCCESS", payload: res.data });
       })
       .catch((err) => {
         console.log(err);
-        dispatch({ type: "ON_ERROR" });
+        // dispatch({ type: "ON_ERROR" });
       });
   }, [searchQuery]);
 
@@ -76,27 +69,28 @@ function App() {
         <Header />
       </searchQueryContext.Provider>
       {/* route components  */}
+
       <searchQueryContext.Provider
         value={{
           searchQuery: searchQuery,
           setSearchQuery: setSearchQuery,
         }}
       >
-        <Route exact path="/" component={SearchPage}></Route>
+        <Route
+          exact
+          path="/movie-info-with-react"
+          component={SearchPage}
+        ></Route>
       </searchQueryContext.Provider>
 
       <Route exact path="/Home" component={Home}></Route>
 
       <Route exact path="/search_results/:searchQuery">
-        {searchQuery ? (
-          <movieDataContext.Provider
-            value={{ movieDataState: movieDataState, dispatch: dispatch }}
-          >
-            <SearchResults />
-          </movieDataContext.Provider>
-        ) : (
-          <Redirect to="/" />
-        )}
+        <movieDataContext.Provider
+          value={{ movieDataState: movieDataState, dispatch: dispatch }}
+        >
+          <SearchResults />
+        </movieDataContext.Provider>
       </Route>
       <movieDataContext.Provider
         value={{ movieDataState: movieDataState, dispatch: dispatch }}
