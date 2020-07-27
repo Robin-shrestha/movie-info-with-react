@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import { apiKey, movieDataContext } from "../App";
 import { imgNotFound, onError, onLoading, moviePoster } from "./utils";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -8,9 +7,7 @@ import "./static/SearchItem.scss";
 const SearchItem = () => {
   const movieId = useParams();
   const [movieData, setMovieData] = useState([]);
-  // const { movieDataState, dispatch } = useContext(movieDataContext);
 
-  // const { loading, error, movieData } = movieDataState;
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/${movieId.id}`, {

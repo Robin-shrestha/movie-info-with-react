@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Pagination = ({ totalPages }) => {
-  //   console.log(totalPages);
+const Pagination = ({ searchQuery, totalPages }) => {
   const pages = (n) => {
     let pages = [];
     for (let i = 1; i <= n; i++) {
@@ -9,20 +9,29 @@ const Pagination = ({ totalPages }) => {
     }
     return pages;
   };
-  //   console.log(pages(totalPages));
-  // useEffect(() => {
-  //     const pageNo = pages(totalPages)
-  //     pageNo
-  // }
-  //     ,[]
-  // )
+
   const pageNos = pages(totalPages);
 
   return (
-    <div style={{ color: "white" }}>
-      <ul>
+    <div>
+      <ul className="pagination">
         {pageNos.map((value, index) => {
-          return <li key="index">{value}</li>;
+          return (
+            <li
+              className="page-item"
+              key={index}
+              className="btn btn-outline-fmv bg-fmv p-1 mr-1"
+            >
+              <Link
+                className="page-link bg-fmv text-white border-0"
+                to={`/search_results/${searchQuery
+                  .split(" ")
+                  .join("_")}/${value}`}
+              >
+                {value}
+              </Link>
+            </li>
+          );
         })}
       </ul>
     </div>

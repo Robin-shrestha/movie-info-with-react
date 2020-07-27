@@ -25,6 +25,7 @@ const SearchResults = () => {
         search results for "{searchTerms.searchQuery.split("_").join(" ")}"
       </h4>
       <Pagination totalPages={movieData.total_pages} />
+
       <ul className="row justify-content-center sr-row pl-3 mt-4">
         {movieData.results
           ? movieData.results.map((item) => {
