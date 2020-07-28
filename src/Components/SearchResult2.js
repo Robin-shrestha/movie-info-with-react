@@ -19,7 +19,6 @@ const SearchResult2 = () => {
   const { searchQuery, setSearchQuery } = useContext(searchQueryContext);
   const [totalPages, setTotalPages] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
-  console.log(params);
 
   // initial api query
   useEffect(() => {
@@ -32,7 +31,7 @@ const SearchResult2 = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setTotalPages(res.data.total_pages);
         setSearchResults(res.data.results);
       })
