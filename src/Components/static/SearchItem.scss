@@ -70,6 +70,9 @@
     }
 
     .movie-detail {
+      .img-poster {
+        max-height: 450px;
+      }
       .descriptions {
         p {
           margin-bottom: 0;
@@ -93,4 +96,8 @@
       }
     }
   }
+}
+
+.cast-list:hover {
+  text-decoration: none;
 }

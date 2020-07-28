@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useReducer } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { searchQueryContext } from "../App";
 import { imgNotFound, moviePoster } from "./utils";
 import Pagination from "./Pagination";
@@ -19,6 +19,14 @@ const SearchResult2 = () => {
   const { searchQuery, setSearchQuery } = useContext(searchQueryContext);
   const [totalPages, setTotalPages] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
+
+  let history = useHistory();
+
+  useEffect(() => {
+    if (!searchQuery) {
+      history.push("/movie-info-with-react");
+    }
+  }, [searchQuery]);
 
   // initial api query
   useEffect(() => {

@@ -1,12 +1,21 @@
 import React, { useEffect, useContext, useState } from "react";
 import { imgNotFound, onError, onLoading, moviePoster } from "./utils";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./static/SearchItem.scss";
+import Credits from "./Credits";
 
 const SearchItem = () => {
   const movieId = useParams();
   const [movieData, setMovieData] = useState([]);
+
+  let history = useHistory();
+
+  useEffect(() => {
+    if (!movieData) {
+      history.push("/movie-info-with-react");
+    }
+  }, [movieData]);
 
   useEffect(() => {
     axios
@@ -16,7 +25,7 @@ const SearchItem = () => {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setMovieData(res.data);
         // dispatch({ type: "MOVIE_ITEM", payload: res.data });
       })
@@ -26,9 +35,6 @@ const SearchItem = () => {
         //   dispatch({ type: "ON_ERROR" });
         // }
       });
-    // return () => {
-    //   dispatch({ type: "ON_RETURN" });
-    // };
   }, []);
 
   useEffect(() => {
@@ -63,15 +69,17 @@ const SearchItem = () => {
 
         <div className="row pl-5 pr-5 pb-5 movie-detail ">
           <img
-            className="offset-xl-1 offset-lg-1 col-xl-3 col-lg-3 col-md-4 col-sm-4 "
+            className="offset-xl-1 offset-lg-1 col-xl-3 col-lg-3 col-md-4 col-sm-4 img-poster"
             src={moviePoster(movieData.poster_path)}
             alt={movieData.title}
             onError={imgNotFound}
           />
           <div className="offset-xl-1 offset-lg-1 offset-sm-1 col-lg-6 col-md-6 col-sm-6 align-self-center descriptions">
             <p>
-              <span>overview:</span> {movieData.overview}
+              <span>Overview:</span> {movieData.overview}
             </p>
+
+            <Credits movieId={movieId.id} />
             <p>
               <span>Release Date:</span> {movieData.release_date}
             </p>
