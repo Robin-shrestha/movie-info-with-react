@@ -4,6 +4,7 @@ import { searchQueryContext } from "../App";
 import { imgNotFound, moviePoster } from "./utils";
 import Pagination from "./Pagination";
 import axios from "axios";
+import "./static/Searchresults.scss";
 
 const initialSearchStater = { page: 1, movieData: [] };
 

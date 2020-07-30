@@ -4,7 +4,7 @@ import axios from "axios";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import Header from "./Components/Header";
-import Home from "./Components/Home";
+import Home from "./Components/Home/Home";
 // import SearchResults from "./Components/SearchResults";
 import SearchPage from "./Components/SearchPage";
 import SearchItem from "./Components/SearchItem";

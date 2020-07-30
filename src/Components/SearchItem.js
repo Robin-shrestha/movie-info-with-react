@@ -58,6 +58,7 @@ const SearchItem = () => {
             <h1>{movieData.title}</h1>
             <p>{movieData.tagline}</p>
             <ul>
+              <span>Genre: </span>{" "}
               {movieData.genres
                 ? movieData.genres.map((item) => {
                     return <li key={item.id}>{item.name}</li>;
@@ -69,7 +70,7 @@ const SearchItem = () => {
 
         <div className="row pl-5 pr-5 pb-5 movie-detail ">
           <img
-            className="offset-xl-1 offset-lg-1 col-xl-3 col-lg-3 col-md-4 col-sm-4 img-poster"
+            className="offset-lg-1 col-xl-3 col-lg-3 col-md-4 col-sm-4 img-poster"
             src={moviePoster(movieData.poster_path)}
             alt={movieData.title}
             onError={imgNotFound}
