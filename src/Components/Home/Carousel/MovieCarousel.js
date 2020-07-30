@@ -3,6 +3,8 @@ import { moviePoster, imgNotFound } from "../../utils";
 import { Link } from "react-router-dom";
 import "./Carousel.scss";
 import axios from "axios";
+import Indicator from "./Indicator";
+import Arrow from "./Arrow";
 
 const MovieCarousel = ({ genreById }) => {
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -26,65 +28,49 @@ const MovieCarousel = ({ genreById }) => {
   }, []);
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const goToSlide = (index) => {
-    setActiveIndex(index);
-  };
 
-  const goToPrevSlide = (e) => {
-    e.preventDefault();
-
-    let index = activeIndex;
-    let slideLength = 9; //will change later
-    if (index < 1) {
-      index = slideLength;
-    } else {
-      --index;
-    }
-    setActiveIndex(index);
-  };
-  const goToNextSlide = (e) => {
-    e.preventDefault();
-    let index = activeIndex;
-    let slideLength = 9; //will change later
-
-    if (index === slideLength) {
-      index = 0;
-    } else {
-      ++index;
-    }
-    setActiveIndex(index);
-  };
+  // useEffect(() => {
+  setInterval(() => {
+    // let index = activeIndex;
+    let slideLength = 9;
+    // if (index == slideLength) {
+    //   index = 0;
+    // } else {
+    //   ++index;
+    // }
+    // setActiveIndex((activeIndex + 1) % slideLength);
+  }, 3000);
+  // });
 
   return (
     <div className="carousel-container">
       <div className="carousel">
-        <a
-          href="#"
-          className="carousel__arrow carousel__arrow--left"
-          onClick={(e) => goToPrevSlide(e)}
-        >
-          <span className="fa fa-2x fa-angle-left" />
-        </a>
-        <ul className="carousel__slides">
+        <Arrow
+          direction="left"
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
+        <ul className="slides">
           {nowPlaying.slice(0, 10).map((slide, index) => {
             return (
               <li
                 className={
-                  index == activeIndex
-                    ? "carousel__slide carousel__slide--active"
-                    : "carousel__slide"
+                  index == activeIndex ? "slide slide--active" : "slide"
                 }
+                // className="slide"
                 key={index}
               >
                 <div className="img-backdrop">
                   <img
-                    src={moviePoster(slide.poster_path)}
+                    src={moviePoster(slide.backdrop_path)}
                     alt={slide.title}
                     onError={imgNotFound}
                   />
                   <div>
                     <h1>
-                      {slide.title} ({slide.release_date.split("-")[0]})
+                      <Link to={`/movie/${slide.id}`}>
+                        {slide.title} ({slide.release_date.split("-")[0]})
+                      </Link>
                     </h1>
                     <p>
                       <span>TMDb </span>
@@ -104,29 +90,17 @@ const MovieCarousel = ({ genreById }) => {
             );
           })}
         </ul>
-        <a
-          href="#"
-          className="carousel__arrow carousel__arrow--right"
-          onClick={(e) => goToNextSlide(e)}
-        >
-          <span className="fa fa-2x fa-angle-right" />
-        </a>
-        <ul className="carousel__indicators">
-          {nowPlaying.slice(0, 10).map((slide, index) => {
-            return (
-              <li key={index}>
-                <a
-                  className={
-                    index == activeIndex
-                      ? "carousel__indicator carousel__indicator--active"
-                      : "carousel__indicator"
-                  }
-                  onClick={(e) => goToSlide(index)}
-                />
-              </li>
-            );
-          })}
-        </ul>
+
+        <Arrow
+          direction="right"
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
+        <Indicator
+          nowPlaying={nowPlaying}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
       </div>
     </div>
   );
