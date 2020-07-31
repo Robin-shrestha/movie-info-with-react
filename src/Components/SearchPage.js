@@ -19,7 +19,7 @@ const SearchPage = () => {
           padding: "1em 1.5em ",
         }}
       >
-        getmovies - Just the place for getting reviews of movies and tv series!{" "}
+        getmovies - Just the place for getting reviews of movies!{" "}
       </p>
       <div className="homebtn">
         <Link to="/Home" className="btn btn-primary btn-lg bg-fmv mt-2 ">

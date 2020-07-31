@@ -19,7 +19,7 @@ const MovieCarousel = ({ genreById }) => {
         },
       })
       .then((res) => {
-        console.log(res.data.results);
+        // console.log(res.data.results);
         setNowPlaying(res.data.results);
       })
       .catch((err) => {
@@ -28,19 +28,6 @@ const MovieCarousel = ({ genreById }) => {
   }, []);
 
   const [activeIndex, setActiveIndex] = useState(0);
-
-  // useEffect(() => {
-  setInterval(() => {
-    // let index = activeIndex;
-    let slideLength = 9;
-    // if (index == slideLength) {
-    //   index = 0;
-    // } else {
-    //   ++index;
-    // }
-    // setActiveIndex((activeIndex + 1) % slideLength);
-  }, 3000);
-  // });
 
   return (
     <div className="carousel-container">

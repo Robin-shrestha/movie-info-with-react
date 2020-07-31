@@ -101,7 +101,7 @@ function App() {
       <searchQueryContext.Provider
         value={{
           searchQuery: searchQuery,
-          setSearchQuery: setSearchQuery,
+          // setSearchQuery: setSearchQuery,
         }}
       >
         <Route

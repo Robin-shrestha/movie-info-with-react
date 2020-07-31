@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import MovieCarousel from "./Carousel/MovieCarousel";
+import TopRatedMovies from "./TopRatedMovies";
+import PopularMovies from "./PopularMovies";
+import UpcomingMovies from "./UpcomingMovies";
+
 import axios from "axios";
 
 const Home = () => {
@@ -25,8 +29,12 @@ const Home = () => {
       });
   }, []);
   return (
-    <div>
+    <div style={{ backgroundColor: "#1e2129" }}>
       <MovieCarousel genreById={genreById} />
+      <PopularMovies />
+      <TopRatedMovies />
+
+      <UpcomingMovies />
     </div>
   );
 };

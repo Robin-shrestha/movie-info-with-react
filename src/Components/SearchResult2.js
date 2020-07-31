@@ -17,7 +17,7 @@ const searchReducer = (state, action) => {
 
 const SearchResult2 = () => {
   const params = useParams();
-  const { searchQuery, setSearchQuery } = useContext(searchQueryContext);
+  const { searchQuery } = useContext(searchQueryContext);
   const [totalPages, setTotalPages] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
 
@@ -40,7 +40,8 @@ const SearchResult2 = () => {
         },
       })
       .then((res) => {
-        // console.log(res.data);
+        console.log("movies");
+        console.log(res.data);
         setTotalPages(res.data.total_pages);
         setSearchResults(res.data.results);
       })
@@ -51,7 +52,9 @@ const SearchResult2 = () => {
 
   return (
     <div className="container-fluid sr-container bg-bgc">
-      <h4 style={{ color: "#FFF" }}>search results for "{searchQuery}"</h4>
+      <h4 style={{ color: "#FFF", textAlign: "center" }}>
+        search results for "{searchQuery}"
+      </h4>
 
       <Pagination searchQuery={searchQuery} totalPages={totalPages} />
 
