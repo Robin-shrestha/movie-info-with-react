@@ -1,7 +1,7 @@
 import React from "react";
 import "./static/header.scss";
 import { Link } from "react-router-dom";
-import SearchBox from "./SearchBox";
+// import SearchBox from "./SearchBox";
 
 const Header = () => {
   return (

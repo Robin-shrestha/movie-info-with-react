@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
-import { imgNotFound, onError, onLoading, moviePoster } from "./utils";
+import React, { useEffect, useState } from "react";
+import { imgNotFound, moviePoster } from "./utils";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./static/SearchItem.scss";
@@ -27,18 +27,10 @@ const SearchItem = () => {
       .then((res) => {
         // console.log(res);
         setMovieData(res.data);
-        // dispatch({ type: "MOVIE_ITEM", payload: res.data });
       })
       .catch((err) => {
         console.log(err);
-        // if (err) {
-        //   dispatch({ type: "ON_ERROR" });
-        // }
       });
-  }, []);
-
-  useEffect(() => {
-    console.log(movieData);
   }, []);
 
   return (

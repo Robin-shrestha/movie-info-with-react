@@ -14,7 +14,7 @@ const TopRatedMovies = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setTopRated(res.data.results);
       })
       .catch((err) => {

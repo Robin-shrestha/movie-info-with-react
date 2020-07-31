@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Pagination = ({ searchQuery, totalPages }) => {
@@ -19,6 +19,7 @@ const Pagination = ({ searchQuery, totalPages }) => {
   const lastPage = () => {
     setCurrentPage(totalPages);
   };
+
   const pages = (n) => {
     let pages = [];
     for (let i = 1; i <= n; i++) {

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./static/searchbox.scss";
 import { searchQueryContext } from "../App";
@@ -6,19 +6,12 @@ import { searchQueryContext } from "../App";
 const SearchBox = ({ setSearchQuery }) => {
   const [searchContent, setSearchContent] = useState("");
   const searchContext = useContext(searchQueryContext);
-
-  // useEffect(() => {
-  //   return searchContext.setSearchQuery("");
-  // }, []);
   let history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // console.log("asd");
     if (searchContent) {
       searchContext.setSearchQuery(searchContent);
-      // history.push("/search_results");
-      // history.push(`/search_results/${searchContent.split(" ").join("_")}`);
       history.push(`/search_results/${searchContent.split(" ").join("_")}/1`);
     } else {
       history.push("/movie-info-with-react");

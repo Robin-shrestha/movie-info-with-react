@@ -28,7 +28,7 @@ const Credits = ({ movieId }) => {
         if (index < 6) {
           return (
             <li style={{ listStyle: "none", margin: "0 8px" }} key={index}>
-              <Link to="#" className="cast-list text-fmv">
+              <Link to={`/people/${cast.id}`} className="cast-list text-fmv">
                 {cast.name}
               </Link>
               ,{" "}

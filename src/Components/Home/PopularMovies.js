@@ -13,7 +13,7 @@ const PopularMovies = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setPopular(res.data.results);
       })
       .catch((err) => {
